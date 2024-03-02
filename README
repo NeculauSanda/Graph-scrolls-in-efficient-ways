@@ -1,0 +1,22 @@
+                                CERINTA 1
+    
+    Citim graful neorientat. Ne vom folosi de un vector alocat dinamic, care va contine numele nodurilor pentru a face conexiunea numelui cu un index (pentru usurinta). Citim pe rand arcele din fisier si trecem mai intai in lista de adiacenta a primului nod pe ce de al doilea, pe urma  il trecem pe primul in lista
+de adiacenta al doilea. Dupa ce am creat graful si am facut citirea urmeaza sa
+aflam cate componente conexe ave. Pentru asta vom utiliza un vector alocat dinamic 
+pentru vizite. Daca nodul nu a fost vizitat atunci parcurgem graful in adancime folosind DFS, unde marcam in vectorul de vizite, nodurile prin care am trecut. Facem recursiv pana cand in vectorul de vizite nu mai exista niciun nod nemarcat.
+    Dupa ce am aflat numarul de componente determinam lungimea drumului minim care trece prin toate nodurile unei componente o singura data utilizand algoritmul PRIM, pentru acesta vom avea nevoie si de un vector de distante si inca un vector pentru a memora dimensiunile minime pe componente. La fel ca mai sus utilizam mai intai DFS apoi aplicam algoritmul PRIM. In acest algoritm vom utiliza
+functia MIN care va returna pozitia nodului care are distanta cea mai mica din vectorul de distante.
+Dupa ce determinam lungimile minime de la un nod i la celelalte le adunam si le trecem in vectorul cu dimensiunile pentru componente. Dupa ce am determinat toate lungimile drumurilor le aranjam crescator
+utilizand qsort. Apoi afisam toate datele cerute.
+
+                                CERINTA 2
+
+    La aceasta cerinta citirea este asemanatoare, insa avand graf orientat de aceasta data nu mai facem in acelasi timp lista de adiacenta si pentru cel de al doilea nod, dar il vom trece in vectorul de nume pentru al nu-l pierde (in caz in care acesta nu are niciun arc de la el la alt nod), pe urma vom crea un
+vector de greutati pentru noduri (facand analogie cu vectorul de nume vom trece unde trebuie greutatea fiecarui nod in parte), la final se citeste greutatea comorii. Dupa citire vom determina drumul cu cel mai convenabil de la INSULA-CORABIE care are scorul cel mai mic. Pentru asta vom avea nevoie de un vector pentru distanta care se va actualiza odata cu vectorul de scor si un vector pentru traseu. La aceasta cerinta vom utiliza algoritmul DIJKSTRA. Pentru inceput verificam daca exista drum de la CORABIE la INSULA aplicand DIJKSTRA cu punctul de plecare de la CORABIE. Daca in vectorul de distante valoarea este zero la
+nodul care reprezinta INSULA inseamna ca nu exita drumul.Daca nu exista ne prim si afisam mesajul corespunzator, daca exista reinitializam vectori care ne trebuie si mai aplicam inca odata DIJKSTRA, dar cu punctul de plecare de la INSULA. In algoritmul DIJKSTRA vom actualiza calea, vectorul distanta si cel de scor. Pentru asta avem nevoie si aici de un vector de vizite. La fel ca la prim utilizam o functie care determina nodul care are scorul cel mai mic din vectorul de scor. Dupa ce l-am aflat il marcam si luam lista de adiacenta, pentru
+fiecare nod din lista determinam scorul minim al drumului, in acelasi timp actualizam si vectorul de distante deoarece avem nevoie la afisare, dar actualizam si vectorul cu traseul. Dupa ce am determinat valorile aplicam 
+functia "print_calea" care va afisa in fisier traseul de la INSULA-CORABIE, dar va determina si greutatea maxima pe care barca poate sa o aiba pe traseu pentru a nu ramane blocata. In aceasta functie, daca in vectorul traseului pe pozitia nodului CORABIE nu este trecut niciun nod inseamna ca nu exista traseu de la INSULA-CORABIE si ne oprim.
+Daca exista continuam de afisat traseul apoi revenim si afisam valorile cerute.
+La sfarsit eliberam memoria. Aceasta este eliberata si aclo unde trebuie pe parcusul problemei.
+
+PUNCTAJ OBTINUT: 120 puncte
